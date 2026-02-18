@@ -203,6 +203,7 @@
             padding: 0 1rem;
             color: #64748b;
             font-size: 0.9rem;
+            position: relative;
         }
         
         .social-auth {
@@ -426,15 +427,13 @@
                         method: 'POST',
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                         body: new URLSearchParams({
-                            username: email, // если логин по email
+                            username: email,
                             password: password
                         })
                     });
                     const data = await response.json();
                     if (response.ok) {
                         showNotification('Успешный вход!', 'success');
-                        // localStorage.setItem('jwt', data.access_token); // если нужно
-                        // window.Telegram.WebApp.close();
                     } else {
                         showNotification('Ошибка: ' + (data.detail || 'Неизвестная ошибка'), 'error');
                     }
@@ -472,7 +471,7 @@
                         method: 'POST',
                         headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify({
-                            username: email, // или другой уникальный логин, если нужен
+                            username: email,
                             password: password,
                             first_name: first_name,
                             last_name: last_name,
@@ -482,7 +481,6 @@
                     const data = await response.json();
                     if (response.ok) {
                         showNotification('Регистрация успешна!', 'success');
-                        // window.Telegram.WebApp.close();
                     } else {
                         showNotification('Ошибка: ' + (data.detail || 'Неизвестная ошибка'), 'error');
                     }
@@ -532,4 +530,4 @@
         }
     </script>
 </body>
-</html> 
+</html>
